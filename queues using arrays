@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include<stdlib.h>
+#define MAX 5
+int queue[5];
+int f=-1,r=-1;
+int overflow(){
+    if(r==MAX-1){
+        printf("the stack is full");
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+int underflow(){
+    if(f==r+1){
+        printf("the stack is empty");
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+void enqueue(int data){
+    if(overflow()==0){
+        if(f==-1){
+        f=0;
+    }
+    r++;
+    queue[r]=data;
+    }
+}
+int dequeue(){
+    if(underflow()==0){
+        int data=queue[f];
+    f++;
+    return data;
+    }
+}
+void display(){
+    for(int i=f;i<=r;i++){
+        printf("%d ",queue[i]);
+}
+}
+int main() {
+    enqueue(10);
+    enqueue(11);
+    enqueue(12);
+    enqueue(13);
+    enqueue(14);
+    printf("%d\n",dequeue());
+    printf("%d\n",dequeue());
+    printf("%d\n",dequeue());
+    display();
+    return 0;
+}
+
